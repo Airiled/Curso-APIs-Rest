@@ -4,14 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gatitos de APIs</title>
+    <title>Dogs fanpage</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 </head>
 <body>
-    <h1>Selector de perros aleatorios</h1>
-    <img width="150" alt="Foto de perro aleatorio">
-    <img width="150" alt="Foto de perro aleatorio">
-    <img width="150" alt="Foto de perro aleatorio">
-    <button type="button" onclick="renovarFotoPerro()">Renovar foto del perro</button>
+    <div class="tittlePage">
+        <h1>Dogs Fanpage</h1>
+    </div>
+    
+    <section class="randomSection">
+        <h2>Random dogs</h2>
+        <div class="randomDiv">
+            <article>
+                <img  alt="Random dog pic">
+                <button class="randomButton" type="button">Add to favorite</button>
+            </article>
+            <article>
+                <img  alt="Random dog pic">
+                <button class="randomButton" type="button">Add to favorite</button>
+            </article>
+            <article>
+                <img  alt="Random dog pic">
+                <button class="randomButton" type="button">Add to favorite</button>
+            </article>
+            <article>
+                <img  alt="Random dog pic">
+                <button class="randomButton" type="button">Add to favorite</button>
+            </article>
+            <article>
+                <img  alt="Random dog pic">
+                <button class="randomButton" type="button">Add to favorite</button>
+            </article>
+            <article>
+                <img  alt="Random dog pic">
+                <button class="randomButton" type="button">Add to favorite</button>
+            </article>
+        </div>
+
+        <div class="repeat">
+            <button type="button" class="renewButton" onclick="renovarFotoPerro()">
+                <img class="faceDog" src="./assets/favicon-32x32.png" alt="reload images">
+            </button>
+        </div>
+    </section>
+
+    <section class="favoriteSection">
+        <h2>Favorites dogs</h2>
+        <div class="favoriteDiv">
+            <img  alt="Foto de perro aleatorio">
+            <button class="favoriteButton" type="button">Remove</button>
+        </div>
+    </section>
+    
     <script src="./main.js"></script>
 </body>
 </html>

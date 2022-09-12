@@ -1,9 +1,9 @@
-const API_URL = 'https://api.thedogapi.com/v1/images/search?limit=3';
+const API_URL = 
+'https://api.thedogapi.com/v1/images/search?limit=6&api_key=live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm';
 const button = document.querySelector('button');
-// button.onclick = renovarFotoPerro;
 
 async function renovarFotoPerro(){
-    console.log('hola');
+    console.log('Estamos adentro de la funcion');
     const response = await fetch(API_URL);
     const data = await response.json();
     const images = document.getElementsByTagName("img")
@@ -15,5 +15,6 @@ async function renovarFotoPerro(){
     })
 }
 
-window.renovarFotoPerro();
+
+renovarFotoPerro();
 
