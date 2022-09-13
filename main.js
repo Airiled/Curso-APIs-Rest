@@ -1,6 +1,7 @@
 const API_URL_RANDOM = 'https://api.thedogapi.com/v1/images/search?limit=6';
 const API_URL_FAVOURITES = 'https://api.thedogapi.com/v1/favourites?&api_key=live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm';
 const API_KEY = '&api_key=live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm';
+const API_URL_FAVOURITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}?&api_key=live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm`;
 
 const spanError = document.getElementById('error');
 
@@ -38,12 +39,12 @@ async function renoveRandomPhoto(){
         img5.src = data[4].url;
         img6.src = data[5].url;
 
-        btn1.onclick = () => saveFavouritePhotos(data[0].id);
-        btn2.onclick = () => saveFavouritePhotos(data[1].id);
-        btn3.onclick = () => saveFavouritePhotos(data[2].id);
-        btn4.onclick = () => saveFavouritePhotos(data[3].id);
-        btn5.onclick = () => saveFavouritePhotos(data[4].id);
-        btn6.onclick = () => saveFavouritePhotos(data[5].id);
+        btn1.onclick = () => saveFavouritePhoto(data[0].id);
+        btn2.onclick = () => saveFavouritePhoto(data[1].id);
+        btn3.onclick = () => saveFavouritePhoto(data[2].id);
+        btn4.onclick = () => saveFavouritePhoto(data[3].id);
+        btn5.onclick = () => saveFavouritePhoto(data[4].id);
+        btn6.onclick = () => saveFavouritePhoto(data[5].id);
     }
 
     
@@ -75,9 +76,13 @@ async function loadFavouritesPhotos(){
         const data = await res.json();
         console.log(data);
 
-        data.forEach(dog =>{
+        const favouriteSection = document.querySelector('.favouriteSection');
+        favouriteSection.innerHTML = "";
+        const h2 = document.createElement('h2');
+        h2.innerHTML = "Favourites dogs";
+
+        data.forEach(dog =>{ //dog hace referencia al elemento favorito actual (por eso luego se utiliza el dog.id para poder eliminar ese x elemento)
             
-            const favouriteSection = document.querySelector('.favouriteSection');
             const articleFavourite = document.createElement('article');
             articleFavourite.classList.add('favouriteClass');
 
@@ -89,6 +94,7 @@ async function loadFavouritesPhotos(){
 
             const btnFavourite = document.createElement('button');
             btnFavourite.classList.add('favouriteButton');
+            btnFavourite.onclick = () => deleteFavouritePhoto(dog.id);
 
             const btnFavouriteText = document.createTextNode('Remove dog from favourites');
 
@@ -98,6 +104,7 @@ async function loadFavouritesPhotos(){
 
             console.log('HOLAS');
         });
+
     }
     
     console.log('Favourites');
@@ -106,7 +113,7 @@ async function loadFavouritesPhotos(){
     
 }
 
-async function saveFavouritePhotos(id){
+async function saveFavouritePhoto(id){
     const res = await fetch(API_URL_FAVOURITES, {
         method: 'POST',
         headers: {  //Con el headers le aclaramos al metodo post que estamos trabajando en JSON (Se hace en el 99% de los casos)
@@ -124,7 +131,25 @@ async function saveFavouritePhotos(id){
         spanError.innerHTML = "Hubo un error " + res.status;
     }else{
         const data = await res.json();
+        console.log(data);
         console.log('Agregado con exito!');
+        loadFavouritesPhotos();  //Al agregarse la imagen que deseamos a favorito volvemos a recargar esta funcion para que nos muestre
+                                // de vuelta la seccion de fotos favoritas con el ultimo elemento ya agregado
+    }
+}
+
+async function deleteFavouritePhoto(id){
+    const res = await fetch(API_URL_FAVOURITES_DELETE(id), {
+        method: 'DELETE',
+    });
+    
+    
+    if(res.status !== 200){
+        spanError.innerHTML = "Hubo un error " + res.status;
+    }else{
+        const data = await res.json();
+        console.log('Eliminado con exito!');
+        loadFavouritesPhotos();
     }
 }
 
