@@ -9,7 +9,7 @@ body{
     background-color: rgb(247, 245, 242);
 }
 
-/* Random Section */
+
 
 .tittlePage{
     text-align: center;
@@ -20,13 +20,10 @@ body{
     
 }
 
-
-.randomSection{
-    
-}
+/* Random Section */
 
 .randomSection h2{
-    margin-left: 4px;
+    margin-left: 16px;
     margin-top: 4px;
 }
 
@@ -37,10 +34,6 @@ body{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr ;
     
-}
-
-.randomDiv article article{
-   order: 3;
 }
 
 .randomDiv article img{
@@ -91,16 +84,65 @@ body{
 
 .renewButton:hover{
     cursor: pointer;
+    background-color: rgb(255, 255, 255, 0.9);
 }
+
 
 .faceDog{
     width: 20px;
     height: 20px;
 }
-/* Favorites Section */
 
-.favoriteSection h2{
-    margin-left: 4px;
+/* Favourites Section */
+
+.favouriteSection h2{
+    margin-left: 16px;
+    margin-top: 4px;
+}
+
+.favouriteDiv{
+    margin-top: 20px;
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr ;
+    
+}
+
+.favouriteDiv article img{
+    width: 400px;
+    height: 350px;
+    margin-right: 24px;
+    border-radius: 4px;
+}
+.favouriteDiv article:nth-child(1){
+    margin-left: 24px;
+}
+
+.favouriteDiv article:nth-child(4){
+    margin-left: 24px;
+}
+
+.favouriteDiv article:nth-child(7){
+    margin-left: 24px;
+}
+
+.favouriteDiv article button{
+    margin: 12px 150px
+}
+
+.favouriteButton{
+    /* background-color: lightgray; */
+    /* background-color: rgb(100, 231, 225, 0.7); */
+    background-color: white;
+    color: rgb(44, 44, 44);
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.favouriteButton:hover{
+    cursor: pointer;
 }
 
 

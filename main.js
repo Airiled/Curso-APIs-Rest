@@ -76,10 +76,16 @@ async function loadFavouritesPhotos(){
         const data = await res.json();
         console.log(data);
 
-        const favouriteSection = document.querySelector('.favouriteSection');
-        favouriteSection.innerHTML = "";
+        const favouriteSection = document.querySelector('.favouriteSection'); 
+        favouriteSection.innerHTML = ""; //Eliminamos todo lo que haya en la seccion de <section>
         const h2 = document.createElement('h2');
-        h2.innerHTML = "Favourites dogs";
+        h2.innerText = "Favourites dogs"; //Volvemos a crear el titulo de la seccion de favoritos.
+        const favouriteDiv = document.createElement('div');
+        favouriteDiv.classList.add('favouriteDiv');
+        favouriteSection.append(h2, favouriteDiv);
+
+        //Volvemos a crear la seccion de favoritos pero ahora con el ultimo elemento ya agregado
+        //Esto se realiza para no tener que estar actualizando la pagina cada vez que se agrega un nuevo elemento
 
         data.forEach(dog =>{ //dog hace referencia al elemento favorito actual (por eso luego se utiliza el dog.id para poder eliminar ese x elemento)
             
@@ -100,7 +106,8 @@ async function loadFavouritesPhotos(){
 
             btnFavourite.append(btnFavouriteText);
             articleFavourite.append(imageFavourite, btnFavourite);
-            favouriteSection.append(articleFavourite);
+            favouriteDiv.append(articleFavourite);
+            favouriteSection.append(favouriteDiv);
 
             console.log('HOLAS');
         });
