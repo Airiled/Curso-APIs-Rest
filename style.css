@@ -23,8 +23,8 @@ body{
 /* Random Section */
 
 .randomSection h2{
-    margin-left: 16px;
     margin-top: 4px;
+    text-align: center;
 }
 
 .randomDiv{
@@ -37,21 +37,21 @@ body{
 }
 
 .randomDiv article img{
-    width: 400px;
-    height: 350px;
-    margin-right: 24px;
+    width: 300px;
+    height: 250px;
+    margin-right: 120px;
     border-radius: 4px;
 }
 .randomDiv article:nth-child(1){
-    margin-left: 24px;
+    margin-left: 120px;
 }
 
 .randomDiv article:nth-child(4){
-    margin-left: 24px;
+    margin-left: 120px;
 }
 
 .randomDiv article button{
-    margin: 12px 150px
+    margin: 12px 100px
 }
 
 .randomButton{
@@ -66,11 +66,15 @@ body{
 
 .randomButton:hover{
     cursor: pointer;
+    background-color: black;
+    color: white;
 }
 
 .repeat{
-    margin: 40px 40px;
+    margin: 40px 20px 20px 20px;
     text-align: center;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
 }
 
 .renewButton{
@@ -96,8 +100,7 @@ body{
 /* Favourites Section */
 
 .favouriteSection h2{
-    margin-left: 16px;
-    margin-top: 4px;
+    text-align: center;
 }
 
 .favouriteDiv{
@@ -110,32 +113,32 @@ body{
 }
 
 .favouriteDiv article img{
-    width: 400px;
-    height: 350px;
-    margin-right: 24px;
+    width: 300px;
+    height: 250px;
+    margin-right: 120px;
     border-radius: 4px;
 }
 .favouriteDiv article:nth-child(1){
-    margin-left: 24px;
+    margin-left: 120px;
 }
 
 .favouriteDiv article:nth-child(4){
-    margin-left: 24px;
+    margin-left: 120px;
 }
 
 .favouriteDiv article:nth-child(7){
-    margin-left: 24px;
+    margin-left: 120px;
 }
 
 .favouriteDiv article button{
-    margin: 12px 150px
+    margin: 12px 72px;
 }
 
 .favouriteButton{
     /* background-color: lightgray; */
     /* background-color: rgb(100, 231, 225, 0.7); */
-    background-color: white;
-    color: rgb(44, 44, 44);
+    background-color: rgb(44, 44, 44);
+    color: white;
     border: 1px solid black;
     border-radius: 8px;
     padding: 8px;
@@ -143,6 +146,8 @@ body{
 
 .favouriteButton:hover{
     cursor: pointer;
+    background-color: black;
+    color: white;
 }
 
 
@@ -150,9 +155,6 @@ body{
 
 @media (max-width:1150px)
 {
-    .randomSection{
-        
-    }
     .randomDiv{
 
         margin-left: 24px;
@@ -166,11 +168,36 @@ body{
     .randomDiv article:nth-child(4){
         margin-left: 0px;
     }
+
+    .favouriteDiv{
+
+        margin-left: 24px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        text-align: left;
+    }
+    .favouriteDiv article:nth-child(1){
+        margin-left: 0px;
+    }
+    .favouriteDiv article:nth-child(4){
+        margin-left: 0px;
+    }
+    .favouriteDiv article:nth-child(7){
+        margin-left: 0px;
+    }
 }
 
 @media (max-width:700px)
 {
     .randomDiv{
+
+        margin-left: 24px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+        text-align: left;
+    }
+
+    .favouriteDiv{
 
         margin-left: 24px;
         grid-template-columns: 1fr;
