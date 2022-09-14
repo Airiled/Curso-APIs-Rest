@@ -13,55 +13,57 @@ async function renoveRandomPhoto(){
     const data = await res.json();
     console.log(data);
 
-    const img1 = document.getElementById("randomDog1");
-    const img2 = document.getElementById("randomDog2");
-    const img3 = document.getElementById("randomDog3");
-    const img4 = document.getElementById("randomDog4");
-    const img5 = document.getElementById("randomDog5");
-    const img6 = document.getElementById("randomDog6");
-
-    const btn1 = document.getElementById("btn1");
-    const btn2 = document.getElementById("btn2");
-    const btn3 = document.getElementById("btn3");
-    const btn4 = document.getElementById("btn4");
-    const btn5 = document.getElementById("btn5");
-    const btn6 = document.getElementById("btn6");
-
     if(res.status !== 200)
     {
-        spanError.innerHTML = "Hubo un error " + res.status + data.message;
+        spanError.innerHTML = "Hubo un error "+ res.status;
     }else{
-        console.log('Random');
-        img1.src = data[0].url;
-        img2.src = data[1].url;
-        img3.src = data[2].url;
-        img4.src = data[3].url;
-        img5.src = data[4].url;
-        img6.src = data[5].url;
 
-        btn1.onclick = () => saveFavouritePhoto(data[0].id);
-        btn2.onclick = () => saveFavouritePhoto(data[1].id);
-        btn3.onclick = () => saveFavouritePhoto(data[2].id);
-        btn4.onclick = () => saveFavouritePhoto(data[3].id);
-        btn5.onclick = () => saveFavouritePhoto(data[4].id);
-        btn6.onclick = () => saveFavouritePhoto(data[5].id);
-    }
+        console.log('Random!');
+        const randomSection = document.querySelector('.randomSection');
+        randomSection.innerText = "";
+        const randomH2 = document.createElement('h2');
+        randomH2.innerText = "¡Select your Dog!";
+        const randomDiv = document.createElement('div');
+        randomDiv.classList.add('randomDiv');
 
+        let buttonCreated = false;
+
+        //Boton para reloguear perros
+        const divReloadDogs = document.createElement('div');
+        divReloadDogs.classList.add('repeat');
+
+        const buttonReloadDogs = document.createElement('button');
+        buttonReloadDogs.classList.add('renewButton');
+
+        const randomIconImg = document.createElement('img');
+        randomIconImg.classList.add('faceDog');
+        randomIconImg.src = './assets/favicon-32x32.png';
+
+        buttonReloadDogs.append(randomIconImg);
+        divReloadDogs.append(buttonReloadDogs);
+
+        //Creamos los elementos para almacenar las fotos de perros randoms
+        data.forEach(dog =>{ 
+                const randomArticle = document.createElement('article');
+                randomArticle.classList.add('randomClass');
     
-
-    //CODIGO MAS DINAMICO (NO ME TERMINO DE FUNCIONAR Y NO LO PUDE ARREGLAR)
-    // const imagesArray = [... images];
+                const randomImg = document.createElement('img');
+                randomImg.classList.add('randomImage');
+                randomImg.src = dog.url;
     
-
-    // if(res.status !== 200){
-    //     spanError.innerHTML = "Hubo un error " + res.status
-    // }else{
-    //     imagesArray.forEach((image, item) =>{
-    //         image.src = data[item].url;
-    //         console.log(data[item].url);
-    //     })
-    // }
+                const randomBtn = document.createElement('button');
+                randomBtn.classList.add('randomButton');
+                randomBtn.onclick = () => saveFavouritePhoto(dog.id); //funcion para guardar foto random en favoritos
+                buttonReloadDogs.onclick = () => renoveRandomPhoto();
     
+                const btnRandomText = document.createTextNode('Add to favourite');
+    
+                randomBtn.append(btnRandomText);
+                randomArticle.append(randomImg, randomBtn);
+                randomDiv.append(randomArticle);
+                randomSection.append(randomH2, randomDiv, divReloadDogs);
+        });
+    }    
 }
 
 async function loadFavouritesPhotos(){
@@ -79,7 +81,7 @@ async function loadFavouritesPhotos(){
         const favouriteSection = document.querySelector('.favouriteSection'); 
         favouriteSection.innerHTML = ""; //Eliminamos todo lo que haya en la seccion de <section>
         const h2 = document.createElement('h2');
-        h2.innerText = "Favourites dogs"; //Volvemos a crear el titulo de la seccion de favoritos.
+        h2.innerText = "¡Your favourites dogs!"; //Volvemos a crear el titulo de la seccion de favoritos.
         const favouriteDiv = document.createElement('div');
         favouriteDiv.classList.add('favouriteDiv');
         favouriteSection.append(h2, favouriteDiv);
@@ -108,16 +110,10 @@ async function loadFavouritesPhotos(){
             articleFavourite.append(imageFavourite, btnFavourite);
             favouriteDiv.append(articleFavourite);
             favouriteSection.append(favouriteDiv);
-
-            console.log('HOLAS');
         });
 
     }
-    
-    console.log('Favourites');
-    console.log(res.status);
-
-    
+    console.log(res.status);   
 }
 
 async function saveFavouritePhoto(id){
