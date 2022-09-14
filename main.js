@@ -1,32 +1,28 @@
 const API_URL_RANDOM = 'https://api.thedogapi.com/v1/images/search?limit=6';
-const API_URL_FAVOURITES = 'https://api.thedogapi.com/v1/favourites?&api_key=live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm';
+const API_URL_FAVOURITES = 'https://api.thedogapi.com/v1/favourites';
 const API_KEY = '&api_key=live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm';
-const API_URL_FAVOURITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}?&api_key=live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm`;
+const API_URL_FAVOURITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}`;
 
 const spanError = document.getElementById('error');
-
-const button = document.querySelector('button');
 
 async function renoveRandomPhoto(){
     
     const res = await fetch(API_URL_RANDOM);
     const data = await res.json();
-    console.log(data);
 
     if(res.status !== 200)
     {
-        spanError.innerHTML = "Hubo un error "+ res.status;
+        spanError.innerHTML = "Hubo un error "+ res.status ;
     }else{
 
         console.log('Random!');
+
         const randomSection = document.querySelector('.randomSection');
         randomSection.innerText = "";
         const randomH2 = document.createElement('h2');
         randomH2.innerText = "¡Select your Dog!";
         const randomDiv = document.createElement('div');
         randomDiv.classList.add('randomDiv');
-
-        let buttonCreated = false;
 
         //Boton para reloguear perros
         const divReloadDogs = document.createElement('div');
@@ -69,7 +65,12 @@ async function renoveRandomPhoto(){
 async function loadFavouritesPhotos(){
 
     
-    const res = await fetch(API_URL_FAVOURITES);
+    const res = await fetch(API_URL_FAVOURITES, {
+        method: 'GET',
+        headers: {
+            'X-API-KEY' : 'live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm',
+        }
+    });
 
     if(res.status !== 200){
         spanError.innerHTML = "Hubo un error " + res.status;
@@ -121,6 +122,7 @@ async function saveFavouritePhoto(id){
         method: 'POST',
         headers: {  //Con el headers le aclaramos al metodo post que estamos trabajando en JSON (Se hace en el 99% de los casos)
             'Content-Type':'application/json',
+            'X-API-KEY' : 'live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm',
         },
         body: JSON.stringify({          //Es la informacion que vamos a enviarle al backend.
         image_id: id                    //Este objeto se le manda como tipo string ya que el lenguaje en el que este escrito
@@ -144,6 +146,9 @@ async function saveFavouritePhoto(id){
 async function deleteFavouritePhoto(id){
     const res = await fetch(API_URL_FAVOURITES_DELETE(id), {
         method: 'DELETE',
+        headers: {
+            'X-API-KEY' : 'live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm',
+        }
     });
     
     
