@@ -19,6 +19,16 @@
     <section class="randomSection">
     </section>
 
+    <section id="uploadingSection">
+        <h2 id="uploadingH2">Do you have a photo of your dog? Show us!</h2>
+        <form id="uploadingForm">
+            <input id="file" type="file" name="file"/> <!-- Al poner que es de tipo file ya se agregaautomaticamente la opcion de subir un archivo
+                                                            y con name="" le ponemos el nombre del archivo que lo vamos a usar luego para llamar a la API
+                                                            la cual requiere estos valores (pide nombre objeto:valor ==> file:file -->
+            <button id="uploadingButton" type="button" onclick="uploadDogPhoto()">Upload photo</button>
+        </form>
+    </section>
+
     <section class="favouriteSection">
     </section>
     

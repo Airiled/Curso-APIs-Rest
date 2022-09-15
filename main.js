@@ -1,9 +1,14 @@
 const API_URL_RANDOM = 'https://api.thedogapi.com/v1/images/search?limit=6';
 const API_URL_FAVOURITES = 'https://api.thedogapi.com/v1/favourites';
+const API_URL_UPLOAD = 'https://api.thedogapi.com/v1/images/upload';
 const API_KEY = '&api_key=live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm';
 const API_URL_FAVOURITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}`;
 
 const spanError = document.getElementById('error');
+
+const prueba = {
+    name: 'Agustin'
+}
 
 async function renoveRandomPhoto(){
     
@@ -12,7 +17,7 @@ async function renoveRandomPhoto(){
 
     if(res.status !== 200)
     {
-        spanError.innerHTML = "Hubo un error "+ res.status ;
+        spanError.innerHTML = `Hubo un error ${res.status} ${data.message}`;
     }else{
 
         console.log('Random!');
@@ -160,6 +165,37 @@ async function deleteFavouritePhoto(id){
         loadFavouritesPhotos();
     }
 }
+
+async function uploadDogPhoto(){
+    // const uploadingButton = document.getElementById('input');
+    const form = document.getElementById('uploadingForm');
+    const formData = new FormData(form); //Creamos una instancia de tipo FormData y le asignamos el valor de nuestro formulario creado
+                                        //Con esto esta instancia toma todos los valores de los inputs que tenemos en nuestro formulario
+    const res = await fetch(API_URL_UPLOAD, {
+        method: 'POST',
+        headers:{
+            //No le mandamos el content type porque esta API en esta seccion si le mandamos eso nos pide mas informacion sobre la imagen
+            //sobre lo que le podamos dar asi que por default, ya le envia esos datos.
+            'X-API-KEY': 'live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm',
+        },
+        body: formData,
+    });
+
+    const data = await res.json();
+    console.log(data);
+    console.log('Fue enviado con exito');
+    // console.log(formData);
+    // formData.get(formData.id)
+    // console.log(formData)
+    saveFavouritePhoto(data.id);
+}
+
+// function uploadSmallPhoto(url){
+//     const uploadingImg = document.createElement('img');
+//     uploadingImg.src = ''+url;
+// }
+
+
 
 renoveRandomPhoto();
 loadFavouritesPhotos();

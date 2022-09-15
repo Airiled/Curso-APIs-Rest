@@ -17,7 +17,6 @@ body{
     padding-bottom: 20px;
     background-color: rgb(44, 44, 44);
     color: white;
-    
 }
 
 /* Random Section */
@@ -149,6 +148,44 @@ body{
     background-color: black;
     color: white;
 }
+
+/* Uploading Section */
+#uploadingH2{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    margin-left: 12px;
+}
+
+#uploadingSection{
+    border-bottom: 1px solid black;
+    padding-bottom: 24px;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+#uploadingForm{
+    
+}
+#uploadingForm input{
+    margin-left: 24px;
+}
+#uploadingForm button{
+    display: block;
+    margin-left: 24px;
+    margin-top: 12px;
+    background-color: rgb(44, 44, 44);
+    color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+#uploadingForm button:hover{
+    cursor: pointer;
+}
+
+
 
 
 /* Media */
