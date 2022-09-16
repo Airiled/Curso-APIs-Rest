@@ -171,9 +171,9 @@ body{
     margin-left: 24px;
 }
 #uploadingForm button{
-    display: block;
-    margin-left: 24px;
+    margin-left: 100px;
     margin-top: 12px;
+    text-align: center;
     background-color: rgb(44, 44, 44);
     color: white;
     border: 1px solid black;
@@ -183,6 +183,12 @@ body{
 
 #uploadingForm button:hover{
     cursor: pointer;
+}
+
+#imagePreview{
+    display: block;
+    padding-top: 12px;
+    margin-left: 8px;
 }
 
 
@@ -240,5 +246,12 @@ body{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
         text-align: left;
+    }
+}
+
+@media (max-width:270px){
+    #uploadingForm button{
+        margin-left: 64px;
+        
     }
 }

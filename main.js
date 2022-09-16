@@ -6,9 +6,7 @@ const API_URL_FAVOURITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourit
 
 const spanError = document.getElementById('error');
 
-const prueba = {
-    name: 'Agustin'
-}
+const input = document.getElementById('file');
 
 async function renoveRandomPhoto(){
     
@@ -184,16 +182,24 @@ async function uploadDogPhoto(){
     const data = await res.json();
     console.log(data);
     console.log('Fue enviado con exito');
-    // console.log(formData);
-    // formData.get(formData.id)
-    // console.log(formData)
     saveFavouritePhoto(data.id);
 }
 
-// function uploadSmallPhoto(url){
-//     const uploadingImg = document.createElement('img');
-//     uploadingImg.src = ''+url;
-// }
+async function miniDogLoaded(url){
+    const imgLoaded = document.getElementById('imagePreview');
+    const file = document.querySelector('input[type=file]').files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', ()=>{
+        imgLoaded.src = reader.result;
+    })
+
+    if(file){
+        reader.readAsDataURL(file);
+    }
+}
+
+
 
 
 
