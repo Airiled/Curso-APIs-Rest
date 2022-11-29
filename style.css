@@ -41,11 +41,12 @@ body{
     margin-right: 120px;
     border-radius: 4px;
 }
-.randomDiv article:nth-child(1){
-    margin-left: 120px;
-}
-
-.randomDiv article:nth-child(4){
+.randomDiv article:nth-child(1),
+.randomDiv article:nth-child(4),
+.randomDiv article:nth-child(7),
+.randomDiv article:nth-child(10),
+.randomDiv article:nth-child(13)
+{
     margin-left: 120px;
 }
 
@@ -117,15 +118,12 @@ body{
     margin-right: 120px;
     border-radius: 4px;
 }
-.favouriteDiv article:nth-child(1){
-    margin-left: 120px;
-}
-
-.favouriteDiv article:nth-child(4){
-    margin-left: 120px;
-}
-
-.favouriteDiv article:nth-child(7){
+.favouriteDiv article:nth-child(1),
+.favouriteDiv article:nth-child(4),
+.favouriteDiv article:nth-child(7),
+.favouriteDiv article:nth-child(10),
+.favouriteDiv article:nth-child(13)
+{
     margin-left: 120px;
 }
 

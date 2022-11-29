@@ -4,7 +4,7 @@ const API_URL_UPLOAD = 'https://api.thedogapi.com/v1/images/upload';
 const API_KEY = '&api_key=live_ZCdyMjS3RJoTkiNr3xS4v5IzT94LFZg8QKZyyiCN5eR5hDiw2FsU9RD2KDoumUlm';
 const API_URL_FAVOURITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}`;
 
-const spanError = document.getElementById('error');
+const spanError = document.getElementById('error'); 
 
 const input = document.getElementById('file');
 
